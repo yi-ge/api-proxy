@@ -1,0 +1,22 @@
+{
+  "name": "api-proxy",
+  "version": "0.0.1",
+  "description": "API forward proxy service.",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/yi-ge/api-proxy.git"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "yi-ge <a@wyr.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yi-ge/api-proxy/issues"
+  },
+  "homepage": "https://github.com/yi-ge/api-proxy#readme"
+}
