@@ -4,7 +4,9 @@
   "description": "API forward proxy service.",
   "main": "main.js",
   "scripts": {
-    "test": "jest"
+    "dev": "nodemon src/main.js",
+    "lint": "standard src/**/*.js",
+    "start": "node src/main.js"
   },
   "repository": {
     "type": "git",
@@ -15,8 +17,66 @@
   ],
   "author": "yi-ge <a@wyr.me>",
   "license": "MIT",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/yi-ge/api-proxy/issues"
   },
-  "homepage": "https://github.com/yi-ge/api-proxy#readme"
+  "homepage": "https://github.com/yi-ge/api-proxy#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "co-body": "^6.0.0",
+    "dayjs": "^1.8.21",
+    "http-proxy": "^1.18.0",
+    "inflation": "^2.0.0",
+    "raw-body": "^2.4.1",
+    "request": "^2.88.2",
+    "socket.io": "^2.3.0",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "nodemon": "^2.0.2",
+    "standard": "^14.3.1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      ".git",
+      "node_modules/**/node_modules"
+    ],
+    "delay": "2500",
+    "env": {
+      "NODE_ENV": "development",
+      "PORT": "80"
+    },
+    "verbose": true,
+    "execMap": {
+      "js": "node --harmony"
+    },
+    "watch": [
+      "src/"
+    ],
+    "ext": "js,json"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "$",
+      "monaco"
+    ],
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 9,
+      "sourceType": "module"
+    },
+    "ignore": [
+      "src/ui/",
+      "user/job/"
+    ]
+  },
+  "engines": {
+    "node": ">= 13.7.0"
+  }
 }
