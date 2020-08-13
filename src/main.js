@@ -23,6 +23,7 @@ global.__dirname = path.dirname(__filename)
 let PORT = process.env.PORT || 80 // 测试环境监听端口5050
 const isDev = process.env.NODE_ENV ? process.env.NODE_ENV === 'development' : false
 const server = new http.Server()
+server.setTimeout(0) // 设置超时时间
 const baseURL = path.join(__dirname, './ui')
 const USER_PATH = path.join(__dirname, '../user')
 

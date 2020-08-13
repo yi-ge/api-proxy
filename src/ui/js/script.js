@@ -603,6 +603,9 @@ $(document).ready(function () {
               filesHTML += '<div class="file disabled-job">' + files[n].substr(0, files[n].length - 12) + '</div>\n'
             } else {
               filesHTML += '<div class="file">' + files[n].substr(0, files[n].length - 3) + '</div>\n'
+              socket.emit('runJob', {
+                filename: files[n]
+              })
             }
           }
 
