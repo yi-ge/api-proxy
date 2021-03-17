@@ -2,14 +2,14 @@
 import fs from 'fs'
 import path from 'path'
 import vm from 'vm'
-import uuid from 'uuid'
+import { v4 as uuidV4 } from 'uuid'
 import url from 'url'
 import httpProxy from 'http-proxy'
 import userMap from './lib/user-map.js'
-import SocketIO from 'socket.io'
+import { Server as SocketIO } from 'socket.io'
 import dayjs from 'dayjs'
 import axios from 'axios'
-import request from 'request'
+import bent from 'bent'
 import parse from 'co-body'
 import zlib from 'zlib'
 import querystring from 'querystring'
@@ -39,9 +39,15 @@ const container = async (io, socket, server) => {
             manageDomain: global.manageDomain,
             httpProxy,
             axios,
-            request,
+            request: {
+              get: bent('GET'),
+              post: bent('POST'),
+              put: bent('PUT'),
+              delete: bent('DELETE')
+            },
+            bent,
             path,
-            uuid,
+            uuid: uuidV4,
             dayjs,
             url,
             parse,
@@ -136,7 +142,7 @@ const container = async (io, socket, server) => {
 }
 
 export default (server) => {
-  const io = SocketIO(server)
+  const io = new SocketIO(server)
 
   io.on('connection', function (socket) {
     console.log('One user connected - ' + socket.id)
@@ -144,7 +150,7 @@ export default (server) => {
       if (authorization) {
         const token = authorization.replace('Custom ', '')
         const r = userMap.get(token)
-  
+
         if (r && r.username) {
           container(io, socket, server)
           socket.emit('auth', 'success')

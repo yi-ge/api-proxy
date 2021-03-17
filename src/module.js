@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import vm from 'vm'
-import uuid from 'uuid'
+import { v4 as uuidV4 } from 'uuid'
 import getJsonBody from './lib/json.js'
 import userMap from './lib/user-map.js'
 import {
@@ -106,7 +106,7 @@ export default {
 
     if (user) {
       content.status = 1
-      content.token = Buffer.from(uuid.v4()).toString('base64')
+      content.token = Buffer.from(uuidV4()).toString('base64')
       delete content.msg
       userMap.set(content.token, {
         username: jsonBody.username,

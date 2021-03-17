@@ -1,6 +1,6 @@
 {
   "name": "api-proxy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "API forward proxy service.",
   "main": "main.js",
   "scripts": {
@@ -23,20 +23,20 @@
   },
   "homepage": "https://github.com/yi-ge/api-proxy#readme",
   "dependencies": {
-    "axios": "^0.19.2",
-    "co-body": "^6.0.0",
-    "dayjs": "^1.8.21",
-    "http-proxy": "^1.18.0",
+    "axios": "^0.21.1",
+    "bent": "^7.3.12",
+    "co-body": "^6.1.0",
+    "dayjs": "^1.10.4",
+    "http-proxy": "^1.18.1",
     "inflation": "^2.0.0",
     "raw-body": "^2.4.1",
-    "request": "^2.88.2",
-    "socket.io": "^2.3.0",
-    "uuid": "^3.4.0"
+    "socket.io": "^4.0.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "nodemon": "^2.0.2",
-    "standard": "^14.3.1"
+    "babel-eslint": "^10.1.0",
+    "nodemon": "^2.0.7",
+    "standard": "^16.0.3"
   },
   "nodemonConfig": {
     "ignore": [
@@ -46,7 +46,7 @@
     "delay": "2500",
     "env": {
       "NODE_ENV": "development",
-      "PORT": "80"
+      "PORT": "8080"
     },
     "verbose": true,
     "execMap": {
