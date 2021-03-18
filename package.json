@@ -29,6 +29,7 @@
     "dayjs": "^1.10.4",
     "http-proxy": "^1.18.1",
     "inflation": "^2.0.0",
+    "proxy-agent": "^4.0.1",
     "raw-body": "^2.4.1",
     "socket.io": "^4.0.0",
     "uuid": "^8.3.2"

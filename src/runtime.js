@@ -13,6 +13,7 @@ import bent from 'bent'
 import parse from 'co-body'
 import zlib from 'zlib'
 import querystring from 'querystring'
+import ProxyAgent from 'proxy-agent'
 
 const USER_PATH = path.join(__dirname, '../user')
 const jobMap = new Map();
@@ -54,24 +55,25 @@ const container = async (io, socket, server) => {
             Buffer,
             zlib,
             querystring,
+            ProxyAgent,
             console: {
-              log(...message) {
+              log (...message) {
                 socket.emit('add', message.join(' ') + '\n');
                 console.log.apply(console, arguments);
               },
-              error(...message) {
+              error (...message) {
                 socket.emit('add', '\x1B[1;3;31m' + message.join(' ') + '\x1B[0m\n');
                 console.error.apply(console, arguments);
               },
-              info(...message) {
+              info (...message) {
                 socket.emit('add', '\x1B[1;3;32m' + message.join(' ') + '\x1B[0m\n');
                 console.info.apply(console, arguments);
               },
-              warn(...message) {
+              warn (...message) {
                 socket.emit('add', '\x1B[1;3;34m' + message.join(' ') + '\x1B[0m\n');
                 console.warn.apply(console, arguments);
               },
-              debug(...message) {
+              debug (...message) {
                 socket.emit('add', '\x1B[1;3;36m' + message.join(' ') + '\x1B[0m\n');
                 console.debug.apply(console, arguments);
               }
@@ -131,7 +133,7 @@ const container = async (io, socket, server) => {
     }
   })
 
-  socket.on('stopJob', function(data) {
+  socket.on('stopJob', function (data) {
     const jobFunction = jobMap.get(data.filename)
     if (jobFunction) {
       server.removeListener('request', jobFunction)
