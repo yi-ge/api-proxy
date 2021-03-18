@@ -19,3 +19,9 @@ yarn dev
 ```bash
 yarn start
 ```
+
+**pm2:**
+
+```bash
+NODE_ENV=production PORT=80 pm2 -i 1 start npm --name api-proxy -- start
+```
